@@ -8,19 +8,23 @@ var sections = ["about",
                 "home"
                ];
 var wandering = -1;
+var curPage = "";
 
 /********************************************************
  * Content Loading
  ********************************************************/
 function loadContent(page) {
-    clearInterval(wandering);
-    
-    var wrapper = $("#content-body-wrapper");
-    var delay = 150;
-
     // get page
     if (!sections.includes(page))
         page = "home";
+
+    if (page == curPage)
+        return;
+    
+    clearInterval(wandering);
+    var wrapper = $("#content-body-wrapper");
+    var delay = 150;
+
 
     // reset active page
     $(".option").removeClass("active");
@@ -32,6 +36,8 @@ function loadContent(page) {
             wrapper.fadeIn(delay);
         });
     });
+
+    curPage = page;
 }
 
 /********************************************************
@@ -47,7 +53,7 @@ for (var s in sections) {
 }
 
 // on startup, load page content based off url
-var initPage = window.location.href.split('#',2)[1];
-loadContent(initPage);
+curPage = window.location.href.split('#',2)[1];
+loadContent(curPage);
 
 console.log("hello, js is ready");
