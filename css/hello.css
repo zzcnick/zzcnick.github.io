@@ -159,6 +159,10 @@ svg {
     height: 100%;
 }
 
+circle {
+    transition: opacity 0.5s;
+}
+
 /*
  * Responsiveness
  */

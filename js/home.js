@@ -6,13 +6,6 @@ var s = $("#play");
 var BOID_SIZE = 6;
 var NUM_BOIDS = 200;
 
-// todo - tmp
-// var bg = document.createElementNS(ns, "rect");
-// bg.setAttribute("width", wrapper.width());
-// bg.setAttribute("height", wrapper.height());
-// bg.setAttribute("style", "fill:rgb(0,0,0)");
-// s.append(bg);
-
 // create boids
 var boids = [];
 
@@ -37,6 +30,7 @@ function createBoid() {
     b.setAttribute("r", BOID_SIZE);
     b.setAttribute("o", enc.o);
     b.setAttribute("style", randomColor()); // todo
+    b.setAttribute("opacity", 0);
 
     enc.obj = b;
     return enc;
@@ -52,8 +46,8 @@ for (var i = 0; i < NUM_BOIDS; i++) {
 function updateBoid(b) {
     b.obj.setAttribute("cx", b.x);
     b.obj.setAttribute("cy", b.y);
-    if (b.y < 300) 
-        b.obj.setAttribute("opacity", Math.max(0.02, (b.y - 150) / 150));
+    if (b.y < 275) 
+        b.obj.setAttribute("opacity", Math.max(0.02, (b.y - 150) / 125));
     else
         b.obj.setAttribute("opacity", 1);
 }
