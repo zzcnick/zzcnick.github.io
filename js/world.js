@@ -20,11 +20,10 @@ function loadContent(page) {
 
     if (page == curPage)
         return;
-    
+
     clearInterval(wandering);
     var wrapper = $("#content-body-wrapper");
     var delay = 150;
-
 
     // reset active page
     $(".option").removeClass("active");
@@ -53,7 +52,6 @@ for (var s in sections) {
 }
 
 // on startup, load page content based off url
-curPage = window.location.href.split('#',2)[1];
-loadContent(curPage);
+loadContent(window.location.href.split('#',2)[1]);
 
 console.log("hello, js is ready");

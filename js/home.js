@@ -29,7 +29,7 @@ function createBoid() {
     b.setAttribute("cy", enc.y);
     b.setAttribute("r", BOID_SIZE);
     b.setAttribute("o", enc.o);
-    b.setAttribute("style", randomColor()); // todo
+    b.setAttribute("style", randomColor());
     b.setAttribute("opacity", 0);
 
     enc.obj = b;
