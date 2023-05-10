@@ -55,6 +55,7 @@ function updateBoid(b) {
 function normalize(a) {
     var arrSum = (a) => a.reduce((x,y) => x + y ** 2, 0);
     var m = arrSum(a) ** 0.5;
+    if (m == 0) { return a; }
     return a.map((x) => x / m);
 }
 
@@ -90,12 +91,12 @@ function letWander(b) {
         }
 
         var ruleCenter = [0,0], ruleAvoid = [0,0], ruleAlign = [0,0];
-        
+       
         if (avgnum)   ruleAlign  = normalize([ox, oy]);
         if (avgnum)   ruleCenter = normalize([avgx / avgnum - b.x, avgy / avgnum - b.y]);
         if (avoidnum) ruleAvoid  = normalize([b.x - avoidx / avoidnum, b.y - avoidy / avoidnum]);
-        
-        var dir = 
+       
+        var dir =
             [ruleCenter[0] * 0.04 + ruleAlign[0] * 0.05 + ruleAvoid[0] * 0.16 + Math.cos(b.o) * 1.3,
              ruleCenter[1] * 0.04 + ruleAlign[1] * 0.05 + ruleAvoid[1] * 0.16 + Math.sin(b.o) * 1.3];
 
@@ -104,9 +105,9 @@ function letWander(b) {
 
     var v = 2.5 + Math.random();
     b.x += Math.cos(b.o) * v;
-    b.y += Math.sin(b.o) * v;
+    b.y += Math.sin(b.o) * v;   
     b.o  = (b.o + Math.random() * 0.2 - 0.1 + 2 * Math.PI) % (2 * Math.PI);
-    
+   
     // wraparound
     if (b.x < -BOID_SIZE)
         b.x = wrapper.width() + BOID_SIZE;

@@ -2,7 +2,7 @@
  * Globals
  ********************************************************/
 var sections = ["about",
-                "puzzles", 
+                "puzzles",
                 // "cooking",
                 "contact",
                 "home"
@@ -42,16 +42,24 @@ function loadContent(page) {
 /********************************************************
  * Event Listeners
  ********************************************************/
-for (var s in sections) {
-    var addListener = (s) => {
-	    $("#section-" + sections[s]).click((e) => {
-	        loadContent(sections[s]);
-	    });
-    };
-    addListener(s); // avoid async issues
-}
+// old listeners, did not allow back button
+// for (var s in sections) {
+//     var addListener = (s) => {
+// 	    $("#section-" + sections[s]).click((e) => {
+// 	        loadContent(sections[s]);
+// 	    });
+//     };
+//     addListener(s); // avoid async issues
+// }
 
 // on startup, load page content based off url
 loadContent(window.location.href.split('#',2)[1]);
+
+// allows backing up
+window.addEventListener("hashchange", function(e) {
+    var section = window.location.href.split('#',2)[1];
+    console.log(section);
+    loadContent(section);
+})
 
 console.log("hello, js is ready");
